@@ -6,7 +6,7 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
 
     // SCREEN SETTINGS
-    int FPS = 60;
+    int FPS = 240;
     final int originTitleSize = 16;
     final int scale = 3;
     final int titleSize = originTitleSize * scale; // 48 x 48 (pixel)
@@ -68,7 +68,41 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-        if(keyH.upPressed == true)
+
+        if(keyH.spacePressed == true)
+        {
+            double drawInterval = 1000000000/FPS;
+            double nextDrawtime = System.nanoTime() + drawInterval;
+            try
+            {
+                double remainingTime = nextDrawtime - System.nanoTime();
+                remainingTime = remainingTime/1000000;
+                if(remainingTime < 0)
+                {
+                    remainingTime = 0;
+                }
+                playerY -= playerSpeed*8;
+                Thread.sleep((long)remainingTime);
+                playerY -= playerSpeed*4;
+                Thread.sleep((long)remainingTime);
+                playerY -= playerSpeed*2;
+                Thread.sleep((long)remainingTime);
+                playerY -= playerSpeed;
+                Thread.sleep((long)remainingTime);
+
+                for(int i = 0; i < 30; i++)
+                {
+                    playerY += playerSpeed/2;
+                    Thread.sleep((long)remainingTime/2);
+                }
+
+            }catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+
+        }
+        else if(keyH.upPressed == true)
         {
             playerY -= playerSpeed;
         }
