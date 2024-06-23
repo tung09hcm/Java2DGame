@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
+
     public void startGameThread()
     {
         gamethread = new Thread(this);
@@ -36,14 +37,31 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
+        double drawInterval = 1000000000/FPS;
+        double nextDrawtime = System.nanoTime() + drawInterval;
 
         while(gamethread != null)
         {
             // as long as gameThread still exist it will run in this while
+            // System.out.println("this game is running");
             // 1. Update: update information such as player information
             update();
             // 2. Draw: draw the screen with the update information
             repaint();
+            try
+            {
+                double remainingTime = nextDrawtime - System.nanoTime();
+                remainingTime = remainingTime/1000000;
+                if(remainingTime < 0)
+                {
+                    remainingTime = 0;
+                }
+                Thread.sleep((long)remainingTime);
+                nextDrawtime += drawInterval;
+            }catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
 
         }
     }
@@ -67,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
             playerX += playerSpeed;
         }
     }
-    public void printComponent(Graphics g)
+    public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
