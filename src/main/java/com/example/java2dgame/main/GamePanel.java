@@ -1,21 +1,28 @@
 package com.example.java2dgame.main;
+import com.example.java2dgame.entity.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable{
 
     // SCREEN SETTINGS
     int FPS = 120;
-    final int originTitleSize = 16;
-    final int scale = 3;
-    final int titleSize = originTitleSize * scale; // 48 x 48 (pixel)
+    public static final int originTitleSize = 16;
+    public static final int scale = 3;
+    public static final int titleSize = originTitleSize * scale; // 48 x 48 (pixel)
     final int maxScreenCol = 16;
     final int maxScreenRow = 12;
-    final int screenWidth = titleSize * maxScreenCol; // 768 (pixel)
-    final int screenHeight = titleSize * maxScreenRow; // 576 (pixel)
+    public final int screenWidth = titleSize * maxScreenCol; // 768 (pixel)
+    public final int screenHeight = titleSize * maxScreenRow; // 576 (pixel)
+
     Thread gamethread;
     KeyHandler keyH = new KeyHandler();
+    Player player = new Player(this,keyH);
+
+
+
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
@@ -26,8 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
         gamethread.start();
     }
 
-    public GamePanel()
-    {
+    public GamePanel() throws IOException {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
@@ -39,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void run() {
         double drawInterval = 1000000000/FPS;
         double nextDrawtime = System.nanoTime() + drawInterval;
-
+        player.setDefaultValue();
         while(gamethread != null)
         {
             // as long as gameThread still exist it will run in this while
@@ -68,82 +74,14 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update()
     {
-
-
-        if(keyH.spacePressed == true)
-        {
-            double drawInterval = 1000000000/FPS;
-            double nextDrawtime = System.nanoTime() + drawInterval;
-            try
-            {
-                double remainingTime = nextDrawtime - System.nanoTime();
-                remainingTime = remainingTime/1000000;
-                if(remainingTime < 0)
-                {
-                    remainingTime = 0;
-                }
-                playerY -= playerSpeed*8;
-                Thread.sleep((long)remainingTime);
-                playerY -= playerSpeed*4;
-                Thread.sleep((long)remainingTime);
-                playerY -= playerSpeed*2;
-                Thread.sleep((long)remainingTime);
-                playerY -= playerSpeed;
-                Thread.sleep((long)remainingTime);
-
-                for(int i = 0; i < 30; i++)
-                {
-                    playerY += playerSpeed/2;
-                }
-
-            }catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-        else if(keyH.upPressed == true)
-        {
-            playerY -= playerSpeed;
-        }
-        else if (keyH.downPressed == true)
-        {
-            playerY += playerSpeed;
-        }
-        else if (keyH.leftPressed == true)
-        {
-            playerX -= playerSpeed;
-        }
-        else if (keyH.rightPressed == true)
-        {
-            playerX += playerSpeed;
-        }
-
-        if(playerX < 0)
-        {
-            playerX = 0;
-        }
-        if(playerY < 0)
-        {
-            playerY = 0;
-        }
-        if(playerX + titleSize >= screenWidth)
-        {
-            playerX = screenWidth - titleSize;
-        }
-        if(playerY + titleSize >= screenHeight)
-        {
-            playerY = screenHeight - titleSize;
-        }
-
-
+        player.update();
     }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.WHITE);
-        g2.fillRect(playerX,playerY,titleSize,titleSize);
+
+        player.draw(g2);
         g2.dispose(); // save memory
     }
 }
