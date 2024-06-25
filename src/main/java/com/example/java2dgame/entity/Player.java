@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Key;
 
-import static com.example.java2dgame.main.GamePanel.titleSize;
+
 
 public class Player extends Entity{
     GamePanel gp;
@@ -36,21 +36,25 @@ public class Player extends Entity{
         {
             y -= speed;
             direction = "up";
+            // keyH.upPressed = false;
         }
         else if (keyH.downPressed == true)
         {
             y += speed;
             direction = "down";
+            // keyH.downPressed = false;
         }
         else if (keyH.leftPressed == true)
         {
             x -= speed;
             direction = "left";
+            // keyH.leftPressed = false;
         }
         else if (keyH.rightPressed == true)
         {
             x += speed;
             direction = "right";
+            // keyH.rightPressed = false;
         }
 
         if(x < 0)
@@ -61,13 +65,13 @@ public class Player extends Entity{
         {
             y = 0;
         }
-        if(x + titleSize >= 768)
+        if(x + gp.titleSize >= 768)
         {
-            x = 768 - titleSize;
+            x = 768 - gp.titleSize;
         }
-        if(y + titleSize >= 576)
+        if(y + gp.titleSize >= 576)
         {
-            y = 576 - titleSize;
+            y = 576 - gp.titleSize;
         }
         spriteCounter++;
         if(spriteCounter > 12)
@@ -107,7 +111,7 @@ public class Player extends Entity{
             else image = right2;
         }
 
-        g2.drawImage(image,x,y,titleSize,titleSize,null);
+        g2.drawImage(image,x,y,gp.titleSize,gp.titleSize,null);
     }
     public void getPlayerImage() throws IOException {
 

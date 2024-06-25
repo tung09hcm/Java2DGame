@@ -9,12 +9,12 @@ import java.io.IOException;
 public class GamePanel extends JPanel implements Runnable{
 
     // SCREEN SETTINGS
-    int FPS = 120;
-    public static final int originTitleSize = 16;
-    public static final int scale = 3;
-    public static final int titleSize = originTitleSize * scale; // 48 x 48 (pixel)
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 12;
+    int FPS = 60;
+    public final int originTitleSize = 16;
+    public final int scale = 3;
+    public final int titleSize = originTitleSize * scale; // 48 x 48 (pixel)
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 12;
     public final int screenWidth = titleSize * maxScreenCol; // 768 (pixel)
     public final int screenHeight = titleSize * maxScreenRow; // 576 (pixel)
 
