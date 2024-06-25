@@ -4,6 +4,7 @@ import com.example.java2dgame.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.*;
 
 
 public class TitleManager {
@@ -43,12 +44,30 @@ public class TitleManager {
     }
     public void draw(Graphics2D g2)
     {
-        for(int i = 0; i <= gp.screenWidth ; i+= gp.titleSize)
-        {
-            for(int j = 0; j <= gp.screenHeight ; j+= gp.titleSize)
-            {
-                g2.drawImage(title[2].image,i,j,gp.titleSize,gp.titleSize,null);
+        int i = 0;
+        int j = 0;
+        String fileName = "/com/example/java2dgame/map/map01.txt";
+        InputStream is = getClass().getResourceAsStream(fileName);
+        if (is == null) {
+            System.err.println("Could not find file: " + fileName);
+            return;
+        }
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // System.out.println(line);
+                String[] numbers = line.split(" ");
+                for(String number: numbers)
+                {
+                    g2.drawImage(title[Integer.parseInt(number)].image,i,j,gp.titleSize,gp.titleSize,null);
+                    i += gp.titleSize;
+                }
+                i = 0;
+                j += gp.titleSize;
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
