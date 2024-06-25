@@ -1,5 +1,6 @@
 package com.example.java2dgame.main;
 import com.example.java2dgame.entity.Player;
+import com.example.java2dgame.titles.TitleManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,15 +18,15 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenWidth = titleSize * maxScreenCol; // 768 (pixel)
     public final int screenHeight = titleSize * maxScreenRow; // 576 (pixel)
 
+
+    TitleManager titleManager = new TitleManager(this);
     Thread gamethread;
     KeyHandler keyH = new KeyHandler();
     Player player = new Player(this,keyH);
 
 
 
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
+
 
     public void startGameThread()
     {
@@ -80,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable{
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-
+        titleManager.draw(g2);
         player.draw(g2);
         g2.dispose(); // save memory
     }

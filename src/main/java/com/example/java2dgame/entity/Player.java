@@ -61,13 +61,13 @@ public class Player extends Entity{
         {
             y = 0;
         }
-        if(x + titleSize*2 >= 768)
+        if(x + titleSize >= 768)
         {
-            x = 768 - titleSize*2;
+            x = 768 - titleSize;
         }
-        if(y + titleSize*2 >= 576)
+        if(y + titleSize >= 576)
         {
-            y = 576 - titleSize*2;
+            y = 576 - titleSize;
         }
         spriteCounter++;
         if(spriteCounter > 12)
@@ -107,7 +107,7 @@ public class Player extends Entity{
             else image = right2;
         }
 
-        g2.drawImage(image,x,y,titleSize*2,titleSize*2,null);
+        g2.drawImage(image,x,y,titleSize,titleSize,null);
     }
     public void getPlayerImage() throws IOException {
 
