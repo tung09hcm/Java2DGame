@@ -12,16 +12,16 @@ import static java.lang.Math.sqrt;
 public class Creeper extends Entity{
     GamePanel gp;
     Player player;
-    public Creeper (GamePanel gamePanel, Player player)
-    {
+    public Creeper (GamePanel gamePanel, Player player) throws IOException {
         this.gp = gamePanel;
         this.player = player;
         setDefaultValue();
+        getCreeperImage();
     }
     public void setDefaultValue()
     {
-        x = 200;
-        y = 200;
+        x = 500;
+        y = 500;
         direction = "down";
         speed = 4;
         spriteNum = 1;
@@ -67,6 +67,9 @@ public class Creeper extends Entity{
     }
     public void draw(Graphics2D g2)
     {
+        System.out.println("==================================");
+        System.out.println("DRAW");
+        System.out.println("==================================");
         g2.drawImage(down1,x,y,gp.titleSize,gp.titleSize,null);
     }
 }
