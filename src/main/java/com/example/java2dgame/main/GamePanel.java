@@ -1,4 +1,5 @@
 package com.example.java2dgame.main;
+import com.example.java2dgame.entity.Creeper;
 import com.example.java2dgame.entity.Player;
 import com.example.java2dgame.titles.TitleManager;
 
@@ -23,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gamethread;
     KeyHandler keyH = new KeyHandler();
     Player player = new Player(this,keyH);
+    Creeper creeper = new Creeper(this,player);
 
 
 
@@ -76,6 +78,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void update()
     {
         player.update();
+        creeper.update();
     }
     public void paintComponent(Graphics g)
     {
@@ -83,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         titleManager.draw(g2);
         player.draw(g2);
+        creeper.draw(g2);
         g2.dispose(); // save memory
     }
 }
