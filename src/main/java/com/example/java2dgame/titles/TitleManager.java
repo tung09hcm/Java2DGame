@@ -55,7 +55,7 @@ public class TitleManager {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // System.out.println(line);
+                //                                                                                                                                                                                                                                                                          System.out.println(line);
                 String[] numbers = line.split(" ");
                 for(String number: numbers)
                 {
