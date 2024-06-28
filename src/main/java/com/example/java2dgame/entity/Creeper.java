@@ -21,8 +21,8 @@ public class Creeper extends Entity{
     }
     public void setDefaultValue()
     {
-        x = 500;
-        y = 500;
+        worldX = 500;
+        worldY = 500;
         direction = "down";
         speed = 2;
         spriteNum = 1;
@@ -41,33 +41,33 @@ public class Creeper extends Entity{
 
     public void update()
     {
-        double distance =(player.x - this.x)*(player.x - this.x) + (player.y-this.y)*(player.y-this.y);
+        double distance =(player.worldX - this.worldX)*(player.worldX - this.worldX) + (player.worldY-this.worldY)*(player.worldY-this.worldY);
         if(distance < 0) distance = -1 * distance;
         System.out.println("distance: " + distance);
-        System.out.println("player.x: " + player.x);
-        System.out.println("player.y: " + player.y);
-        System.out.println("creeper.x: " + this.x);
-        System.out.println("creeper.y: " + this.y);
+        System.out.println("player.x: " + player.worldX);
+        System.out.println("player.y: " + player.worldY);
+        System.out.println("creeper.x: " + this.worldX);
+        System.out.println("creeper.y: " + this.worldY);
 
         if(distance < 200*200)
         {
-            if(player.x >= x)
+            if(player.worldX >= worldX)
             {
-                x += speed;
+                worldX += speed;
                 direction = "right";
             }
             else {
-                x -= speed;
+                worldX -= speed;
                 direction = "left";
             }
-            if(player.y >= y)
+            if(player.worldY >= worldY)
             {
-                y += speed;
+                worldY += speed;
                 direction = "down";
             }
             else
             {
-                y -= speed;
+                worldY -= speed;
                 direction = "up";
             }
         }
@@ -108,6 +108,6 @@ public class Creeper extends Entity{
             else image = right2;
         }
 
-        g2.drawImage(image,x,y,gp.titleSize,gp.titleSize,null);
+        g2.drawImage(image,worldX,worldY,gp.titleSize,gp.titleSize,null);
     }
 }

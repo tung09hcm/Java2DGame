@@ -15,17 +15,21 @@ import java.security.Key;
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
+    public final int screenX;
+    public final int screenY;
 
     public Player(GamePanel panel, KeyHandler keyHandler) throws IOException {
         this.gp = panel;
         this.keyH = keyHandler;
+        screenX = gp.screenWidth/2 - gp.titleSize/2;
+        screenY = gp.screenHeight/2 - gp.titleSize/2;
         getPlayerImage();
     }
 
     public void setDefaultValue()
     {
-        x = 100;
-        y = 100;
+        worldX = gp.titleSize * 23;
+        worldY = gp.titleSize * 21;
         speed = 4;
         direction = "down";
         spriteNum = 1;
@@ -34,45 +38,45 @@ public class Player extends Entity{
     {
         if(keyH.upPressed == true)
         {
-            y -= speed;
+            worldY -= speed;
             direction = "up";
             // keyH.upPressed = false;
         }
         else if (keyH.downPressed == true)
         {
-            y += speed;
+            worldY += speed;
             direction = "down";
             // keyH.downPressed = false;
         }
         else if (keyH.leftPressed == true)
         {
-            x -= speed;
+            worldX -= speed;
             direction = "left";
             // keyH.leftPressed = false;
         }
         else if (keyH.rightPressed == true)
         {
-            x += speed;
+            worldX += speed;
             direction = "right";
             // keyH.rightPressed = false;
         }
 
-        if(x < 0)
-        {
-            x = 0;
-        }
-        if(y < 0)
-        {
-            y = 0;
-        }
-        if(x + gp.titleSize >= 768)
-        {
-            x = 768 - gp.titleSize;
-        }
-        if(y + gp.titleSize >= 576)
-        {
-            y = 576 - gp.titleSize;
-        }
+        //        if(x < 0)
+//        {
+//            x = 0;
+//        }
+//        if(y < 0)
+//        {
+//            y = 0;
+//        }
+//        if(x + gp.titleSize >= 768)
+//        {
+//            x = 768 - gp.titleSize;
+//        }
+//        if(y + gp.titleSize >= 576)
+//        {
+//            y = 576 - gp.titleSize;
+//        }
         spriteCounter++;
         if(spriteCounter > 12)
         {
@@ -111,7 +115,7 @@ public class Player extends Entity{
             else image = right2;
         }
 
-        g2.drawImage(image,x,y,gp.titleSize,gp.titleSize,null);
+        g2.drawImage(image,screenX,screenY,gp.titleSize,gp.titleSize,null);
     }
     public void getPlayerImage() throws IOException {
 

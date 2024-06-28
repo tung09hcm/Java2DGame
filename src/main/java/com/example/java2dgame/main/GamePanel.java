@@ -20,6 +20,12 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = titleSize * maxScreenRow; // 576 (pixel)
 
 
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = titleSize * maxWorldCol;
+    public final int worldHeight = titleSize * maxWorldRow;
+
+
     TitleManager titleManager = new TitleManager(this);
     Thread gamethread;
     KeyHandler keyH = new KeyHandler();
