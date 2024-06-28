@@ -23,7 +23,7 @@ public class Creeper extends Entity{
         x = 500;
         y = 500;
         direction = "down";
-        speed = 4;
+        speed = 2;
         spriteNum = 1;
     }
     public void getCreeperImage() throws IOException {
@@ -37,29 +37,31 @@ public class Creeper extends Entity{
         right2 = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/mob/boy_right_2.png"));
 
     }
-    public double calculateDistance()
-    {
-        double distance =(player.x - x)*(player.x - x) - (player.y-y)*(player.y-y);
-        distance = sqrt(distance);
-        return distance;
-    }
+
     public void update()
     {
-        if(calculateDistance() < 200)
+        double distance =(player.x - this.x)*(player.x - this.x) + (player.y-this.y)*(player.y-this.y);
+        if(distance < 0) distance = -1 * distance;
+        System.out.println("distance: " + distance);
+        System.out.println("player.x: " + player.x);
+        System.out.println("player.y: " + player.y);
+        System.out.println("creeper.x: " + this.x);
+        System.out.println("creeper.y: " + this.y);
+
+        if(distance < 200*200)
         {
-            if(player.x > x)
+            if(player.x >= x)
             {
                 x += speed;
             }
-            else if(player.x < x)
-            {
+            else {
                 x -= speed;
             }
-            if(player.y > y)
+            if(player.y >= y)
             {
                 y += speed;
             }
-            else if(player.x < y)
+            else
             {
                 y -= speed;
             }
@@ -67,9 +69,6 @@ public class Creeper extends Entity{
     }
     public void draw(Graphics2D g2)
     {
-        System.out.println("==================================");
-        System.out.println("DRAW");
-        System.out.println("==================================");
         g2.drawImage(down1,x,y,gp.titleSize,gp.titleSize,null);
     }
 }
