@@ -4,6 +4,7 @@ import com.example.java2dgame.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import static java.lang.Math.sqrt;
@@ -53,22 +54,60 @@ public class Creeper extends Entity{
             if(player.x >= x)
             {
                 x += speed;
+                direction = "right";
             }
             else {
                 x -= speed;
+                direction = "left";
             }
             if(player.y >= y)
             {
                 y += speed;
+                direction = "down";
             }
             else
             {
                 y -= speed;
+                direction = "up";
+            }
+        }
+        spriteCounter++;
+        if(spriteCounter > 12)
+        {
+            if(spriteNum == 1)
+            {
+                spriteNum = 2;
+            }
+            else if (spriteNum == 2)
+            {
+                spriteNum = 1;
             }
         }
     }
     public void draw(Graphics2D g2)
     {
-        g2.drawImage(down1,x,y,gp.titleSize,gp.titleSize,null);
+        BufferedImage image = null;
+        if(direction == "up")
+        {
+            if(spriteNum == 1) image = up1;
+            else image = up2;
+        }
+        else if (direction == "down")
+        {
+            if(spriteNum == 1 )image = down1;
+            else image = down2;
+        }
+        else if (direction == "left")
+        {
+            if(spriteNum == 1 )image = left1;
+            else image = left2;
+        }
+        else if (direction == "right")
+        {
+            if(spriteNum == 1 )image = right1;
+            else image = right2;
+        }
+
+        g2.drawImage(image,x,y,gp.titleSize,gp.titleSize,null);
     }
 }
