@@ -43,11 +43,6 @@ public class Creeper extends Entity{
     {
         double distance =(player.worldX - this.worldX)*(player.worldX - this.worldX) + (player.worldY-this.worldY)*(player.worldY-this.worldY);
         if(distance < 0) distance = -1 * distance;
-        System.out.println("distance: " + distance);
-        System.out.println("player.x: " + player.worldX);
-        System.out.println("player.y: " + player.worldY);
-        System.out.println("creeper.x: " + this.worldX);
-        System.out.println("creeper.y: " + this.worldY);
 
         if(distance < 200*200)
         {

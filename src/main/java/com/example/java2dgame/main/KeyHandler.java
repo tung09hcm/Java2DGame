@@ -17,22 +17,22 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_W)
         {
             upPressed = true;
-            System.out.println("upPressed: " + upPressed);
+            //System.out.println("upPressed: " + upPressed);
         }
         if(code == KeyEvent.VK_S)
         {
             downPressed = true;
-            System.out.println("downPressed: " + downPressed);
+            //System.out.println("downPressed: " + downPressed);
         }
         if(code == KeyEvent.VK_A)
         {
             leftPressed = true;
-            System.out.println("leftPressed: " + leftPressed);
+            //System.out.println("leftPressed: " + leftPressed);
         }
         if(code == KeyEvent.VK_D)
         {
             rightPressed = true;
-            System.out.println("rightPressed: " + rightPressed);
+            //System.out.println("rightPressed: " + rightPressed);
         }
     }
 
@@ -43,22 +43,22 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_W)
         {
             upPressed = false;
-            System.out.println("upPressed: " + upPressed);
+            //System.out.println("upPressed: " + upPressed);
         }
         if(code == KeyEvent.VK_S)
         {
             downPressed = false;
-            System.out.println("downPressed: " + downPressed);
+            //System.out.println("downPressed: " + downPressed);
         }
         if(code == KeyEvent.VK_A)
         {
             leftPressed = false;
-            System.out.println("leftPressed: " + leftPressed);
+            //System.out.println("leftPressed: " + leftPressed);
         }
         if(code == KeyEvent.VK_D)
         {
             rightPressed = false;
-            System.out.println("rightPressed: " + rightPressed);
+            //System.out.println("rightPressed: " + rightPressed);
         }
     }
 }

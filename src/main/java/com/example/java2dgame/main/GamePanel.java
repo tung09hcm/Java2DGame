@@ -10,7 +10,7 @@ import java.io.IOException;
 public class GamePanel extends JPanel implements Runnable{
 
     // SCREEN SETTINGS
-    int FPS = 60;
+    int FPS = 120;
     public final int originTitleSize = 16;
     public final int scale = 3;
     public final int titleSize = originTitleSize * scale; // 48 x 48 (pixel)
@@ -29,8 +29,8 @@ public class GamePanel extends JPanel implements Runnable{
     TitleManager titleManager = new TitleManager(this);
     Thread gamethread;
     KeyHandler keyH = new KeyHandler();
-    Player player = new Player(this,keyH);
-    Creeper creeper = new Creeper(this,player);
+    public Player player = new Player(this,keyH);
+    // Creeper creeper = new Creeper(this,player);
 
 
 
@@ -84,14 +84,14 @@ public class GamePanel extends JPanel implements Runnable{
     public void update()
     {
         player.update();
-        creeper.update();
+        //creeper.update();
     }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         titleManager.draw(g2);
-        creeper.draw(g2);
+        //creeper.draw(g2);
         player.draw(g2);
 
         g2.dispose(); // save memory

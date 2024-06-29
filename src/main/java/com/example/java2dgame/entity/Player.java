@@ -36,47 +36,36 @@ public class Player extends Entity{
     }
     public void update()
     {
-        if(keyH.upPressed == true)
+        if(keyH.upPressed)
         {
             worldY -= speed;
             direction = "up";
+            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
             // keyH.upPressed = false;
         }
-        else if (keyH.downPressed == true)
+        else if (keyH.downPressed)
         {
             worldY += speed;
             direction = "down";
+            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
             // keyH.downPressed = false;
         }
-        else if (keyH.leftPressed == true)
+        else if (keyH.leftPressed)
         {
             worldX -= speed;
             direction = "left";
+            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
             // keyH.leftPressed = false;
         }
-        else if (keyH.rightPressed == true)
+        else if (keyH.rightPressed)
         {
             worldX += speed;
             direction = "right";
+            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
             // keyH.rightPressed = false;
         }
 
-        //        if(x < 0)
-//        {
-//            x = 0;
-//        }
-//        if(y < 0)
-//        {
-//            y = 0;
-//        }
-//        if(x + gp.titleSize >= 768)
-//        {
-//            x = 768 - gp.titleSize;
-//        }
-//        if(y + gp.titleSize >= 576)
-//        {
-//            y = 576 - gp.titleSize;
-//        }
+
         spriteCounter++;
         if(spriteCounter > 12)
         {
@@ -89,6 +78,8 @@ public class Player extends Entity{
                spriteNum = 1;
            }
         }
+        System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+
 
     }
     public void draw(Graphics2D g2)

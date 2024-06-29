@@ -55,10 +55,10 @@ public class TitleManager {
         try
         {
             title[0] = new Title();
-            title[0].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/dirt.png"));
+            title[0].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/brick.png"));
 
             title[1] = new Title();
-            title[1].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/sand.png"));
+            title[1].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/dirt.png"));
 
             title[2] = new Title();
             title[2].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/tree.png"));
@@ -67,7 +67,7 @@ public class TitleManager {
             title[3].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/moss_brick.png"));
 
             title[4] = new Title();
-            title[4].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/brick.png"));
+            title[4].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/sand.png"));
 
 
 
@@ -80,18 +80,25 @@ public class TitleManager {
     }
     public void draw(Graphics2D g2)
     {
+        // System.out.println("player_coordinate: (" + gp.player.worldX/gp.titleSize + ", " + gp.player.worldY/ gp.titleSize + ")");
         int i_i = 0;
         int j_j = 0;
-        for(int i = 0; i < gp.maxWorldRow ; i++)
+        //System.out.println("============================");
+        for(int i = gp.player.worldY/gp.titleSize - 6; i < gp.maxScreenRow + gp.player.worldY/gp.titleSize - 6 ; i++)
         {
-            for(int j = 0; j < gp.maxWorldCol ; j++)
+            for(int j = gp.player.worldX/gp.titleSize - 8; j < gp.maxScreenCol + gp.player.worldX/gp.titleSize - 8 ; j++)
             {
-                g2.drawImage(title[mapTitleNum[i][j]].image,i_i,j_j,gp.titleSize,gp.titleSize,null);
+                //System.out.print("("+i+","+j+") ");
+                if (i >= 0 && i <= 49 && j >= 0 && j <= 49) {
+                    g2.drawImage(title[mapTitleNum[i][j]].image, i_i, j_j, gp.titleSize, gp.titleSize, null);
+                    System.out.println("maptitleNum" + i +","+j);
+                }
                 i_i += gp.titleSize;
             }
             i_i = 0;
             j_j += gp.titleSize;
         }
+        //g2.drawImage(title[1].image,50,50,gp.titleSize,gp.titleSize,null);
 
 
     }
