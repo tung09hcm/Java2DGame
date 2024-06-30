@@ -91,7 +91,7 @@ public class TitleManager {
                 //System.out.print("("+i+","+j+") ");
                 if (i >= 0 && i <= 49 && j >= 0 && j <= 49) {
                     g2.drawImage(title[mapTitleNum[i][j]].image, i_i, j_j, gp.titleSize, gp.titleSize, null);
-                    System.out.println("maptitleNum" + i +","+j);
+                    // System.out.println("maptitleNum" + i +","+j);
                 }
                 i_i += gp.titleSize;
             }

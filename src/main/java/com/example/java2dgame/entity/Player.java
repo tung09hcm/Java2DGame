@@ -30,7 +30,7 @@ public class Player extends Entity{
     {
         worldX = gp.titleSize * 23;
         worldY = gp.titleSize * 21;
-        speed = 4;
+        speed = 8;
         direction = "down";
         spriteNum = 1;
     }
@@ -40,30 +40,50 @@ public class Player extends Entity{
         {
             worldY -= speed;
             direction = "up";
-            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
-            // keyH.upPressed = false;
+            if(worldY < 0)
+            {
+                //System.out.println("signal3");
+                worldY = 0;
+                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+            }
         }
         else if (keyH.downPressed)
         {
             worldY += speed;
             direction = "down";
-            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
-            // keyH.downPressed = false;
+            if (worldY > gp.titleSize*gp.maxWorldRow)
+            {
+                //System.out.println("signal4");
+                worldY = gp.titleSize * (gp.maxWorldRow - 1);
+                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+            }
         }
         else if (keyH.leftPressed)
         {
             worldX -= speed;
             direction = "left";
-            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
-            // keyH.leftPressed = false;
+            if(worldX < 0) {
+                //System.out.println("signal1");
+                worldX = 0;
+                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+            }
         }
         else if (keyH.rightPressed)
         {
             worldX += speed;
             direction = "right";
+            if (worldX > gp.titleSize*gp.maxWorldCol)
+            {
+                //System.out.println("signal2");
+                worldX = gp.titleSize * (gp.maxWorldCol - 1);
+                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+            }
             // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
             // keyH.rightPressed = false;
         }
+
+
+
 
 
         spriteCounter++;
@@ -78,7 +98,9 @@ public class Player extends Entity{
                spriteNum = 1;
            }
         }
-        System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+        //System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+
+
 
 
     }
