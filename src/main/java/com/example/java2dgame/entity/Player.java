@@ -35,48 +35,29 @@ public class Player extends Entity{
         spriteNum = 1;
     }
     public void update() {
-        if(keyH.upPressed)
+        if(keyH.upPressed && worldY != 0)
         {
             worldY -= speed;
             direction = "up";
-            if(worldY < 0)
-            {
-                //System.out.println("signal3");
-                worldY = 0;
-                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
-            }
+
         }
-        else if (keyH.downPressed)
+        else if (keyH.downPressed && worldY/gp.titleSize != gp.maxWorldRow - 1)
         {
             worldY += speed;
             direction = "down";
-            if (worldY > gp.titleSize*gp.maxWorldRow)
-            {
-                //System.out.println("signal4");
-                worldY = gp.titleSize * (gp.maxWorldRow-1);
-                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
-            }
+
         }
-        else if (keyH.leftPressed)
+        else if (keyH.leftPressed && worldX != 0)
         {
             worldX -= speed;
             direction = "left";
-            if(worldX < 0) {
-                //System.out.println("signal1");
-                worldX = 0;
-                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
-            }
+
         }
-        else if (keyH.rightPressed)
+        else if (keyH.rightPressed && worldX/gp.titleSize != gp.maxWorldCol - 1)
         {
             worldX += speed;
             direction = "right";
-            if (worldX > gp.titleSize*gp.maxWorldCol)
-            {
-                //System.out.println("signal2");
-                worldX = gp.titleSize * (gp.maxWorldCol-1);
-                System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
-            }
+
             // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
             // keyH.rightPressed = false;
         }
@@ -86,7 +67,7 @@ public class Player extends Entity{
 
 
         spriteCounter++;
-        if(spriteCounter > 12)
+        if(spriteCounter > 120)
         {
            if(spriteNum == 1)
            {

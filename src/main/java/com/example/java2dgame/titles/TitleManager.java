@@ -84,9 +84,9 @@ public class TitleManager {
         int i_i = 0;
         int j_j = 0;
         //System.out.println("============================");
-        for(int i = gp.player.worldY/gp.titleSize - 6; i < gp.maxScreenRow + gp.player.worldY/gp.titleSize - 6 ; i++)
+        for(int i = gp.player.worldY/gp.titleSize - (gp.maxScreenRow-1)/2; i < gp.maxScreenRow + gp.player.worldY/gp.titleSize - (gp.maxScreenRow-1)/2 ; i++)
         {
-            for(int j = gp.player.worldX/gp.titleSize - 8; j < gp.maxScreenCol + gp.player.worldX/gp.titleSize - 8 ; j++)
+            for(int j = gp.player.worldX/gp.titleSize - (gp.maxScreenCol-1)/2; j < gp.maxScreenCol + gp.player.worldX/gp.titleSize - (gp.maxScreenCol-1)/2 ; j++)
             {
                 //System.out.print("("+i+","+j+") ");
                 if (i >= 0 && i <= 49 && j >= 0 && j <= 49) {
