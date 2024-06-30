@@ -34,8 +34,7 @@ public class Player extends Entity{
         direction = "down";
         spriteNum = 1;
     }
-    public void update()
-    {
+    public void update() {
         if(keyH.upPressed)
         {
             worldY -= speed;
@@ -54,7 +53,7 @@ public class Player extends Entity{
             if (worldY > gp.titleSize*gp.maxWorldRow)
             {
                 //System.out.println("signal4");
-                worldY = gp.titleSize * (gp.maxWorldRow - 1);
+                worldY = gp.titleSize * (gp.maxWorldRow-1);
                 System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
             }
         }
@@ -75,7 +74,7 @@ public class Player extends Entity{
             if (worldX > gp.titleSize*gp.maxWorldCol)
             {
                 //System.out.println("signal2");
-                worldX = gp.titleSize * (gp.maxWorldCol - 1);
+                worldX = gp.titleSize * (gp.maxWorldCol-1);
                 System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
             }
             // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
