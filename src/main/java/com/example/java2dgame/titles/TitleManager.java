@@ -9,8 +9,8 @@ import java.io.*;
 
 public class TitleManager {
     GamePanel gp;
-    Title[] title;
-    int mapTitleNum[][];
+    public Title[] title;
+    public int mapTitleNum[][];
 
     public TitleManager(GamePanel gp)
     {
@@ -56,12 +56,14 @@ public class TitleManager {
         {
             title[0] = new Title();
             title[0].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/brick.png"));
+            title[0].collison = true;
 
             title[1] = new Title();
             title[1].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/dirt.png"));
 
             title[2] = new Title();
             title[2].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/tree.png"));
+            title[2].collison = true;
 
             title[3] = new Title();
             title[3].image = ImageIO.read(getClass().getResourceAsStream("/com/example/java2dgame/titles/moss_brick.png"));

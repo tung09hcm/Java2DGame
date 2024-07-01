@@ -26,9 +26,10 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldHeight = titleSize * maxWorldRow;
 
 
-    TitleManager titleManager = new TitleManager(this);
+    public TitleManager titleManager = new TitleManager(this);
     Thread gamethread;
     KeyHandler keyH = new KeyHandler();
+    public CollisonChecker cChecker = new CollisonChecker(this);
     public Player player = new Player(this,keyH);
     // Creeper creeper = new Creeper(this,player);
 

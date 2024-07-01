@@ -24,49 +24,57 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - gp.titleSize/2;
         screenY = gp.screenHeight/2 - gp.titleSize/2;
         getPlayerImage();
-    }
 
-    public void setDefaultValue()
-    {
-        worldX = gp.titleSize * 23;
-        worldY = gp.titleSize * 21;
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = gp.titleSize/4*3;
+        solidArea.height = gp.titleSize/4*3;
+    }
+    public void setDefaultValue() {
+        worldX = gp.titleSize * 19;
+        worldY = gp.titleSize * 4;
         speed = 8;
         direction = "down";
         spriteNum = 1;
     }
     public void update() {
+        CollisionOn = false;
+        //gp.cChecker.checkTitle(this);
         if(keyH.upPressed && worldY != 0)
         {
-            worldY -= speed;
+            spriteCounter++;
             direction = "up";
+            gp.cChecker.checkTitle(this);
+            if(!CollisionOn) worldY -= speed;
 
         }
         else if (keyH.downPressed && worldY/gp.titleSize != gp.maxWorldRow - 1)
         {
-            worldY += speed;
+            spriteCounter++;
             direction = "down";
+            gp.cChecker.checkTitle(this);
+            if(!CollisionOn) worldY += speed;
 
         }
         else if (keyH.leftPressed && worldX != 0)
         {
-            worldX -= speed;
+            spriteCounter++;
             direction = "left";
-
+            gp.cChecker.checkTitle(this);
+            if(!CollisionOn) worldX -= speed;
         }
         else if (keyH.rightPressed && worldX/gp.titleSize != gp.maxWorldCol - 1)
         {
-            worldX += speed;
+            spriteCounter++;
             direction = "right";
+            gp.cChecker.checkTitle(this);
+            if(!CollisionOn) worldX += speed;
 
-            // System.out.println("i: " + (gp.player.worldX/gp.titleSize - 8) + " " + "j: " + (gp.player.worldY/gp.titleSize - 6));
-            // keyH.rightPressed = false;
         }
 
 
 
-
-
-        spriteCounter++;
         if(spriteCounter > 120)
         {
            if(spriteNum == 1)
@@ -78,8 +86,8 @@ public class Player extends Entity{
                spriteNum = 1;
            }
         }
-        //System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
-
+        // System.out.println("player: " + worldX/gp.titleSize + ", " + worldY/gp.titleSize);
+        // System.out.println("title#: " + gp.titleManager.mapTitleNum[worldY/gp.titleSize][worldX/gp.titleSize]);
 
 
 
